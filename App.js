@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Alert, Button, StyleSheet, View} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
+import ToastExample from './ToastExample';
 
 export default class ButtonBasics extends Component {
   _onPressButton() {
-    Alert.alert('You tapped the button!');
+    ToastExample.show('Awesome', ToastExample.SHORT);
   }
 
   render() {
