@@ -1,10 +1,25 @@
 import React, {Component} from 'react';
 import {Button, StyleSheet, View} from 'react-native';
 import ToastExample from './ToastExample';
+import CallbackTestModule from './CallbackTestModule';
 
 export default class ButtonBasics extends Component {
   _onPressButton() {
-    ToastExample.show('Awesome', ToastExample.SHORT);
+    CallbackTestModule.measureLayout(
+      100,
+      1000,
+      msg => {
+        console.log(msg);
+        ToastExample.show(msg, ToastExample.SHORT);
+      },
+      (relativeX, relativeY, width, height) => {
+        console.log(relativeX + ':' + relativeY + ':' + width + ':' + height);
+        ToastExample.show(
+          relativeX + ':' + relativeY + ':' + width + ':' + height,
+          ToastExample.SHORT,
+        );
+      },
+    );
   }
 
   render() {
